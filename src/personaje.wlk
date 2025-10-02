@@ -10,19 +10,19 @@ object juego{
     }
 }
 object personaje {
-    var property position = game.at(0,0)
+    var property position = game.at(5,10)
     var property inventario = []
     var property cantSemillas = 0
     var property arbolesPlantados = 0
     const objetivoArboles = 10
 
-    method image() = "gato.png"
+    method image() = "persona.png"
     method mover(nuevaPosicion) { 
         self.position(nuevaPosicion)
-    }
-    method recolectarBasura(basura) {
+    } //configurar flechas
+    method recolectarBasura() {
 
-     }
+    }
     method podesPlantar() {
       
     }

@@ -14,11 +14,11 @@ class Basura{
         game.onTick(1000, "aparece basura", {new Basura().aparecer()})
    }
 
+   method teAgarroPersonaje() {}
 }
 class Banana inherits Basura(valorSemillas = 20){
     override method imagen() {}
     game.addVisual()
-    ASDASDASD
 }   
 class Manzana inherits Basura(valorSemillas = 10){
     override method imagen() {}

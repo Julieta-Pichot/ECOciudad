@@ -2,7 +2,6 @@ import wollok.game.*
 import personaje.*
 import basura.*
 
-
 program Juego {
   game.width(25)
   game.height(25)
@@ -10,6 +9,11 @@ program Juego {
   game.title("Juego ECOCiudad")
   game.boardGround("fondote.png")
   game.addVisual(personaje)
-
+  
+  keyboard.up().onPressDo({ personaje.mover(personaje.position().up(1)) })
+  keyboard.down().onPressDo({ personaje.mover(personaje.position().down(1)) })
+  keyboard.left().onPressDo({ personaje.mover(personaje.position().left(1)) })
+  keyboard.right().onPressDo({ personaje.mover(personaje.position().right(1)) })
+  
   game.start()
 }

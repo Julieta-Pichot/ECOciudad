@@ -1,0 +1,15 @@
+import wollok.game.*
+import personaje.*
+import basura.*
+
+
+program Juego {
+  game.width(25)
+  game.height(25)
+  game.cellSize(30)
+  game.title("Juego ECOCiudad")
+  game.boardGround("fondote.png")
+  game.addVisual(personaje)
+
+  game.start()
+}

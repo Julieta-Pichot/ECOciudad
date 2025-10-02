@@ -18,8 +18,8 @@ class Basura{
 class Banana inherits Basura(valorSemillas = 20){
     override method imagen() {}
     game.addVisual()
-
-}
+    ASDASDASD
+}   
 class Manzana inherits Basura(valorSemillas = 10){
     override method imagen() {}
 

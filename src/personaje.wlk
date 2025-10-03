@@ -3,7 +3,6 @@ import basura.*
 
 object juego {
   method iniciar() {
-    game.addVisualCharacter(personaje)
     
     game.onCollideDo(personaje, { algo => algo.teAgarroPersonaje() })
     //disparador principal de logica, cuando el personaje choque con algo se ejecuta el "teAgarroPersonaje"

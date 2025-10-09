@@ -1,35 +1,67 @@
 import wollok.game.*
 import personaje.*
 
-
-class Basura{
-    var property position = game.at(0,0)
-    var property valorSemillas = 0 
-
-    method imagen() {}
-    method serRecolectada() {
-      self.teAgarroPersoanje()
-    }
-    self.generarBasura()
-    method generarBasura() {
-        game.onTick(1000, "aparece basura", {new Basura().aparecer()})
-   }
-
-   method teAgarroPersonaje() {}
+class Basura {
+  var property position
+  var property image
+  method valorSemillas()
 }
-class Banana inherits Basura(valorSemillas = 20){
-    override method imagen() {}
-    game.addVisual()
-}   
-class Manzana inherits Basura(valorSemillas = 10){
-    override method imagen() {}
 
+class Banana inherits Basura {
+  override method valorSemillas() = 20
 }
-class Papel inherits Basura(valorSemillas = 15){
-    override method imagen() {}
 
+class Manzana inherits Basura {
+  override method valorSemillas() = 10
 }
-class Lata inherits Basura(valorSemillas = 30){
-    override method imagen() {}
 
+class Papel inherits Basura {
+  override method valorSemillas() = 15
+}
+
+class Lata inherits Basura {
+  override method valorSemillas() = 30
+}
+
+object generador {
+  method crearBananas(cantidad) {
+    cantidad.times({ i =>
+      const b = new Banana(position = self.posicionAleatoria(), image = "bananita.png")
+      game.addVisual(b)
+    })
+  }
+
+  method crearManzanas(cantidad) {
+    cantidad.times({ i =>
+      const m = new Manzana(position = self.posicionAleatoria(), image = "manzanita.png")
+      game.addVisual(m)
+    })
+  }
+
+  method crearPapeles(cantidad) {
+    cantidad.times({ i =>
+      const p = new Papel(position = self.posicionAleatoria(), image = "papelito.png")
+      game.addVisual(p)
+    })
+  }
+
+  method crearLatas(cantidad) {
+    cantidad.times({ i =>
+      const l = new Lata(position = self.posicionAleatoria(), image = "latita.png")
+      game.addVisual(l)
+    })
+  }
+
+  method posicionAleatoria() {
+    const x = 0.randomUpTo(game.width())
+    const y = 0.randomUpTo(game.height())
+    return game.at(x, y)
+  }
+
+  method basuraInicial() {
+    self.crearBananas(5)
+    self.crearManzanas(5)
+    self.crearPapeles(4)
+    self.crearLatas(3)
+  }
 }

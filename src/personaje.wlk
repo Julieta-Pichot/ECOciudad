@@ -1,13 +1,12 @@
 import wollok.game.*
 import basura.*
 
-object juego{
-    method iniciar() {
-      game.addVisualCharacter(personaje)
-
-      game.onCollideDo(personaje, {algo=>algo.teAgarroPersonaje()})//disparador principal de logica, cuando el personaje choque con algo se ejecuta el "teAgarroPersonaje"
-      
-    }
+object juego {
+  method iniciar() {
+    
+    game.onCollideDo(personaje, { algo => algo.teAgarroPersonaje() })
+    //disparador principal de logica, cuando el personaje choque con algo se ejecuta el "teAgarroPersonaje"
+  }
 }
 
 object personaje {

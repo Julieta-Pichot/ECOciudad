@@ -1,3 +1,4 @@
+import wollok.game.*
 import personaje.*
 
 
@@ -17,7 +18,8 @@ class Basura{
    method teAgarroPersonaje() {}
 }
 class Banana inherits Basura(valorSemillas = 20){
-    override method imagen() = "bananita.png"
+    override method imagen() {}
+    game.addVisual()
 }   
 class Manzana inherits Basura(valorSemillas = 10){
     override method imagen() {}

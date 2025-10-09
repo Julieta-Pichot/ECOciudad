@@ -9,6 +9,8 @@ program Juego {
   game.title("Juego ECOCiudad")
   game.boardGround("fondoJuego.png")
   game.addVisual(personaje)
+
+  generador.basuraInicial()
   
   keyboard.up().onPressDo({ personaje.mover(personaje.position().up(1)) })
   keyboard.down().onPressDo({ personaje.mover(personaje.position().down(1)) })

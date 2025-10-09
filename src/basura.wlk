@@ -17,8 +17,7 @@ class Basura{
    method teAgarroPersonaje() {}
 }
 class Banana inherits Basura(valorSemillas = 20){
-    override method imagen() {}
-    game.addVisual()
+    override method imagen() = "bananita.png"
 }   
 class Manzana inherits Basura(valorSemillas = 10){
     override method imagen() {}

@@ -9,6 +9,7 @@ program Juego {
   game.title("Juego ECOCiudad")
   game.boardGround("fondote.png")
   game.addVisual(personaje)
+  game.addVisual(Banana)
   
   keyboard.up().onPressDo({ personaje.mover(personaje.position().up(1)) })
   keyboard.down().onPressDo({ personaje.mover(personaje.position().down(1)) })

@@ -11,11 +11,16 @@ program Juego {
   game.addVisual(personaje)
 
   generador.basuraInicial()
-  
+
+  game.onCollideDo(personaje, {basura => basura.serRecolectada()})
+
   keyboard.up().onPressDo({ personaje.mover(personaje.position().up(1)) })
   keyboard.down().onPressDo({ personaje.mover(personaje.position().down(1)) })
   keyboard.left().onPressDo({ personaje.mover(personaje.position().left(1)) })
   keyboard.right().onPressDo({ personaje.mover(personaje.position().right(1)) })
+
+  keyboard.i().onPressDo({personaje.verInventario()})
+  
   keyboard.w().onPressDo({ personaje.mover(personaje.position().up(1)) })
   keyboard.s().onPressDo({ personaje.mover(personaje.position().down(1)) })
   keyboard.a().onPressDo({ personaje.mover(personaje.position().left(1)) })

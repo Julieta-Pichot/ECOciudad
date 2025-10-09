@@ -5,6 +5,11 @@ class Basura {
   var property position
   var property image
   method valorSemillas()
+
+  method serRecolectada() {
+    game.removeVisual(self)
+    personaje.recolectarBasura(self)
+  }
 }
 
 class Banana inherits Basura {
@@ -59,7 +64,7 @@ object generador {
   }
 
   method basuraInicial() {
-    self.crearBananas(5)
+    self.crearBananas(6)
     self.crearManzanas(5)
     self.crearPapeles(4)
     self.crearLatas(3)

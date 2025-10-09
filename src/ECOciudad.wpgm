@@ -16,6 +16,12 @@ program Juego {
   keyboard.down().onPressDo({ personaje.mover(personaje.position().down(1)) })
   keyboard.left().onPressDo({ personaje.mover(personaje.position().left(1)) })
   keyboard.right().onPressDo({ personaje.mover(personaje.position().right(1)) })
+  keyboard.w().onPressDo({ personaje.mover(personaje.position().up(1)) })
+  keyboard.s().onPressDo({ personaje.mover(personaje.position().down(1)) })
+  keyboard.a().onPressDo({ personaje.mover(personaje.position().left(1)) })
+  keyboard.d().onPressDo({ personaje.mover(personaje.position().right(1)) })
   
+
+
   game.start()
 }

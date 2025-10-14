@@ -1,6 +1,7 @@
 import wollok.game.*
 import personaje.*
 import basura.*
+import arbol.*
 
 program Juego {
   game.width(26)
@@ -20,6 +21,8 @@ program Juego {
   keyboard.right().onPressDo({ personaje.mover(personaje.position().right(1)) })
 
   keyboard.i().onPressDo({personaje.verInventario()})
+  keyboard.p().onPressDo({ personaje.plantar() })
+
   
   keyboard.w().onPressDo({ personaje.mover(personaje.position().up(1)) })
   keyboard.s().onPressDo({ personaje.mover(personaje.position().down(1)) })

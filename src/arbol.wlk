@@ -3,7 +3,7 @@ import personaje.*
 
 class Arbol {
   const property position
-  const property image = "arbolini.png"
+  const property image = "arbolon.png"
   const aumentoAtmosfera = 1
   
 //   method teAgarroPersonaje() {

@@ -19,9 +19,8 @@ object personaje {
   const objetivoPlantaciones = 10
   const semillasNecesarias = 75
 
-  
   method image() = "persona.png"
-  
+
   method mover(nuevaPosicion) {
     if (self.posicionValida(nuevaPosicion)) {
       position = nuevaPosicion
@@ -30,7 +29,7 @@ object personaje {
   method posicionValida(
     pos
   ) = (((pos.x() >= 0) && (pos.x() < game.width())) && (pos.y() >= 0)) && (pos.y() < game.height())
-  
+
   method recolectarBasura(basura) {
     cantSemillas += basura.valorSemillas()
     basuraRecolectada += 1
@@ -73,7 +72,8 @@ method plantar() {
     gestorArboles.plantarArbol(self.position())
     cantSemillas -= semillasNecesarias
     arbolesPlantados += 1
-    game.say(self, "Plantaste un árbol 🌱 (Llevás " + arbolesPlantados + " de " + objetivoPlantaciones + ")")
-  }
+    game.say(self, "Plantaste un árbol 🌱 (Llevás " + arbolesPlantados + " de " + objetivoPlantaciones + ")")
+  }
 }
 }
+

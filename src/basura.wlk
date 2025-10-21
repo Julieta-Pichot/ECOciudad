@@ -96,7 +96,7 @@ object generador {
   
   method posicionAleatoria() {
     const x = 0.randomUpTo(game.width()).truncate(0)
-    const y = 0.randomUpTo(game.height()).truncate(0)
+    const y = 0.randomUpTo(14).truncate(0)
     return game.at(x, y)
   }
   

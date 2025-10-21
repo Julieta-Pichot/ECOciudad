@@ -2,6 +2,7 @@ import wollok.game.*
 import personaje.*
 import basura.*
 import arbol.*
+import atmosfera.*
 
 program Juego {
   game.width(26)
@@ -9,9 +10,14 @@ program Juego {
   game.cellSize(38)
   game.title("Juego ECOCiudad")
   game.boardGround("fondoJuego.png")
+  game.addVisual(fondoBarraHUD)  
+  game.addVisual(barraAtmosfera)
+  game.addVisual(infoSemillas)
+  game.addVisual(infoArboles) 
   game.addVisual(personaje)
 
   generador.basuraInicial()
+  atmosfera.iniciarContador()
 
   game.onCollideDo(personaje, {basura => basura.serRecolectada()})
 

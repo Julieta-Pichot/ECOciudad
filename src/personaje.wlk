@@ -1,6 +1,7 @@
 import wollok.game.*
 import basura.*
 import arbol.*
+import atmosfera.*
 
 object juego {
   method iniciar() {
@@ -26,9 +27,9 @@ object personaje {
       position = nuevaPosicion
     }
   }
-  method posicionValida(
-    pos
-  ) = (((pos.x() >= 0) && (pos.x() < game.width())) && (pos.y() >= 0)) && (pos.y() < game.height())
+  method posicionValida(pos) = 
+  pos.x() >= 0 && pos.x() < game.width() && 
+  pos.y() >= 0 && pos.y() < 13 
 
   method recolectarBasura(basura) {
     cantSemillas += basura.valorSemillas()
@@ -39,7 +40,6 @@ object personaje {
       game.say(self, "Ya podes planta un arbolito!!")
     } else{
       const faltanSemillas = semillasNecesarias - cantSemillas
-      game.say(self, "Semillas: " + cantSemillas + "(Faltan " + faltanSemillas + ")")
     }
   }
   method verInventario() {
@@ -60,19 +60,19 @@ object personaje {
 method plantar() {
   if(!self.podesPlantar()) {
     const faltanSemillas = semillasNecesarias - cantSemillas
-    game.say(self, "No tenés suficientes semillas (Tenés: " + cantSemillas + ", necesitás: " + semillasNecesarias + ")")
+    game.say(self, "No tenEs suficientes semillas (Tenés: " + cantSemillas + ", necesitás: " + semillasNecesarias + ")")
   } 
   else if(gestorArboles.posicionOcupada(position)) {
     game.say(self, "¡Ya hay un árbol en esta posición!")
-  } // Funciona, pero no planta los arboles en la posición del personaje
+  }
   else if (arbolesPlantados >= objetivoPlantaciones) {
-    game.say(self, "🎉 ¡Ganaste! La ciudad está salvada 🌳🌎")
+    game.say(self, "¡Ganaste! La ciudad está salvada ")
   } 
   else {
     gestorArboles.plantarArbol(self.position())
     cantSemillas -= semillasNecesarias
     arbolesPlantados += 1
-    game.say(self, "Plantaste un árbol 🌱 (Llevás " + arbolesPlantados + " de " + objetivoPlantaciones + ")")
+    atmosfera.aumentar(2) 
   }
 }
 }

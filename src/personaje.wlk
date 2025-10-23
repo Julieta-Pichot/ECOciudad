@@ -18,7 +18,7 @@ object personaje {
   var property basuraRecolectada = 0 
   var property arbolesPlantados = 0
   const objetivoPlantaciones = 10
-  const semillasNecesarias = 75
+  const semillasNecesarias = 70
 
   method image() = "persona.png"
 
@@ -29,7 +29,7 @@ object personaje {
   }
   method posicionValida(pos) = 
   pos.x() >= 0 && pos.x() < game.width() && 
-  pos.y() >= 0 && pos.y() < 13 
+  pos.y() >= 0 && pos.y() < 14 
 
   method recolectarBasura(basura) {
     cantSemillas += basura.valorSemillas()
@@ -72,7 +72,7 @@ method plantar() {
     gestorArboles.plantarArbol(self.position())
     cantSemillas -= semillasNecesarias
     arbolesPlantados += 1
-    atmosfera.aumentar(2) 
+    atmosfera.aumentar(1) 
   }
 }
 }

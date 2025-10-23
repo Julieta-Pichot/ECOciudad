@@ -10,6 +10,7 @@ class Basura {
   method serRecolectada() {
     game.removeVisual(self)
     personaje.recolectarBasura(self)
+    generador.eliminarBasura(self)
   }
 }
 
@@ -31,6 +32,7 @@ class Lata inherits Basura {
 
 object generador {
   const basurasActivas = []
+  const max = 20
   
   method posicionLibre() {
     const posicion = self.posicionAleatoria()
@@ -102,8 +104,40 @@ object generador {
   
   method basuraInicial() {
     self.crearBananas(6)
-    self.crearManzanas(5)
-    self.crearPapeles(4)
-    self.crearLatas(3)
+    self.crearManzanas(8)
+    self.crearPapeles(7)
+    self.crearLatas(5)
+  }
+  
+  method iniciarRegeneracion() {
+    game.onTick(3000, "regenerar basura", { self.regenerarBasura() })
+  }
+  
+  method detenerRegeneracion() {
+    game.removeTickEvent("regenerar basura")
+  }
+  
+  method regenerarBasura() {
+    // Solo regenerar si no hay demasiada basura
+    if (basurasActivas.size() < max) {
+      const prob = 1.randomUpTo(100)
+      
+      
+      // Probabilidades según balance
+      if (prob <= 35) {
+        self.crearBananas(1) // 35% Banana
+      } else {
+        if (prob <= 70) {
+          self.crearManzanas(1) // 35% Manzana
+        } else {
+          if (prob <= 90) self.crearPapeles(1) // 20% Papel
+          else self.crearLatas(1) // 10% Lata
+        }
+      }
+    }
+  }
+  
+  method eliminarBasura(basura) {
+    basurasActivas.remove(basura)
   }
 }

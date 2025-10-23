@@ -11,12 +11,13 @@ program Juego {
   game.title("Juego ECOCiudad")
   game.boardGround("fondoJuego.png")
   game.addVisual(fondoBarraHUD)  
-  game.addVisual(barraAtmosfera)
+  // game.addVisual(barraAtmosfera)
   game.addVisual(infoSemillas)
   game.addVisual(infoArboles) 
   game.addVisual(personaje)
 
   generador.basuraInicial()
+  generador.iniciarRegeneracion()
   atmosfera.iniciarContador()
 
   game.onCollideDo(personaje, {basura => basura.serRecolectada()})

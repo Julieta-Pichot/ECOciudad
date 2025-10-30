@@ -1,5 +1,6 @@
 import wollok.game.*
 import personaje.*
+import gameOver.* 
 
 
 object atmosfera {
@@ -32,7 +33,11 @@ method aumentar(cantidad) {
 method gameOver() {
         estaViva = false
         self.detenerContador()
-        game.say(personaje, "La atmosfera murio")
+        pantallaFinal.mostrarDerrota()
+    }
+    method reiniciar() {  
+        vidaAtmosfera = 7
+        estaViva = true
     }
 
 }

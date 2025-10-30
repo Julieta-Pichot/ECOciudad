@@ -3,6 +3,7 @@ import personaje.*
 import basura.*
 import arbol.*
 import atmosfera.*
+import gameOver.* 
 
 program Juego {
   game.width(26)
@@ -11,7 +12,7 @@ program Juego {
   game.title("Juego ECOCiudad")
   game.boardGround("fondoJuego.png")
   game.addVisual(fondoBarraHUD)  
-  // game.addVisual(barraAtmosfera)
+  game.addVisual(barraAtmosfera)
   game.addVisual(infoSemillas)
   game.addVisual(infoArboles) 
   game.addVisual(personaje)
@@ -29,7 +30,7 @@ program Juego {
 
   keyboard.i().onPressDo({personaje.verInventario()})
   keyboard.p().onPressDo({ personaje.plantar() })
-
+  keyboard.r().onPressDo({ controladorJuego.reiniciar() })
   
   keyboard.w().onPressDo({ personaje.mover(personaje.position().up(1)) })
   keyboard.s().onPressDo({ personaje.mover(personaje.position().down(1)) })

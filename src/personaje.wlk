@@ -2,6 +2,7 @@ import wollok.game.*
 import basura.*
 import arbol.*
 import atmosfera.*
+import gameOver.*
 
 object juego {
   method iniciar() {
@@ -74,6 +75,16 @@ method plantar() {
     arbolesPlantados += 1
     atmosfera.aumentar(1) 
   }
+  if (arbolesPlantados >= objetivoPlantaciones) {  
+      pantallaFinal.mostrarVictoria()
+    }
+}
+method reiniciar() { 
+  position = game.at(13, 7)
+  inventario.clear()
+  cantSemillas = 0
+  basuraRecolectada = 0
+  arbolesPlantados = 0
 }
 }
 

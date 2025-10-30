@@ -140,4 +140,10 @@ object generador {
   method eliminarBasura(basura) {
     basurasActivas.remove(basura)
   }
+  method limpiar() {  // ← AGREGAR este método
+    basurasActivas.forEach({ basura => 
+      if (game.hasVisual(basura)) game.removeVisual(basura)
+    })
+    basurasActivas.clear()
+  }
 }

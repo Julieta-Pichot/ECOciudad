@@ -28,4 +28,9 @@ object gestorArboles {
   method cantidadArboles() = arboles.size()
   
   method arboles() = arboles
+
+  method limpiar() {  
+    arboles.forEach({ arbol => game.removeVisual(arbol) })
+    arboles.clear()
+  }
 }

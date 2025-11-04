@@ -2,13 +2,11 @@ import wollok.game.*
 import basura.*
 import arbol.*
 import atmosfera.*
-import gameOver.*
+import final.*
 
 object juego {
   method iniciar() {
     game.onCollideDo(personaje, {basura => basura.serRecolectada()})
-    game.onCollideDo(personaje, { algo => algo.teAgarroPersonaje() })
-    //disparador principal de logica, cuando el personaje choque con algo se ejecuta el "teAgarroPersonaje"
   }
 }
 
@@ -24,7 +22,7 @@ object personaje {
   method image() = "persona.png"
 
   method mover(nuevaPosicion) {
-    if (self.posicionValida(nuevaPosicion)) {
+      if (self.posicionValida(nuevaPosicion)) {
       position = nuevaPosicion
     }
   }
@@ -42,14 +40,6 @@ object personaje {
     } else{
       const faltanSemillas = semillasNecesarias - cantSemillas
     }
-  }
-  method verInventario() {
-    const cantBananas = inventario.count({b => b.imagen() == "bananita.png"})
-    const cantManzanas = inventario.count({b => b.imagen() == "manzanita.png"})
-    const cantPapel = inventario.count({b => b.imagen() == "papelito.png"})
-    const cantLata = inventario.count({b => b.imagen() == "latita.png"})
-
-    game.say(self, "Banana" + cantBananas + "Manzana" + cantManzanas + "Papel" + cantPapel + "Lata" + cantLata)
   }
   method decir() {
     return

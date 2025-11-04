@@ -1,6 +1,6 @@
 import wollok.game.*
 import personaje.*
-import gameOver.*
+import final.*
 import basura.*
 
 object atmosfera {

@@ -3,7 +3,7 @@ import personaje.*
 import basura.*
 import arbol.*
 import atmosfera.*
-import gameOver.* 
+import final.* 
 
 program Juego {
   game.width(26)
@@ -28,7 +28,6 @@ program Juego {
   keyboard.left().onPressDo({ personaje.mover(personaje.position().left(1)) })
   keyboard.right().onPressDo({ personaje.mover(personaje.position().right(1)) })
 
-  keyboard.i().onPressDo({personaje.verInventario()})
   keyboard.p().onPressDo({ personaje.plantar() })
   keyboard.r().onPressDo({ controladorJuego.reiniciar() })
   

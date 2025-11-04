@@ -8,7 +8,7 @@ object pantallaFinal {
   var property position = game.at(0, 0)
   var esVictoria = false
   
-  method image() = if (esVictoria) "victo.png" else "perdi.png"
+  method image() = if (esVictoria) "victory.png" else "perdiste.png"
   
   method mostrarDerrota() {
     esVictoria = false

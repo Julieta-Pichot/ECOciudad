@@ -19,6 +19,7 @@ object pantallaFinal {
   
   method mostrarVictoria() {
     esVictoria = true
+    atmosfera.detenerContador()
     controladorJuego.terminarJuego()
     game.addVisual(self)
     self.ocultarTodo()

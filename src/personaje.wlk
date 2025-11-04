@@ -46,7 +46,7 @@ object personaje {
     basuraRecolectada
   }
   method podesPlantar() {
-    return cantSemillas >= semillasNecesarias
+    return cantSemillas >= semillasNecesarias and atmosfera.estaViva() == true
   }
 method plantar() {
   if(!self.podesPlantar()) {

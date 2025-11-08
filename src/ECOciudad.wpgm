@@ -11,15 +11,7 @@ program Juego {
   game.cellSize(38)
   game.title("Juego ECOCiudad")
   game.boardGround("fondoJuego.png")
-
   pantallaInicio.mostrar()
-  
-  keyboard.e().onPressDo({ controladorJuego.iniciarJuego() })
-  
-  keyboard.r().onPressDo(
-    { if (!controladorJuego.juegoActivo()) // Solo cuando terminó
-        controladorJuego.reiniciar() }
-  )
   
   game.onCollideDo(personaje, { basura => basura.serRecolectada() })
   
@@ -29,14 +21,13 @@ program Juego {
   keyboard.right().onPressDo({ personaje.mover(personaje.position().right(1)) })
   
   keyboard.p().onPressDo({ personaje.plantar() })
-  keyboard.r().onPressDo({ controladorJuego.reiniciar() })
+  keyboard.e().onPressDo({ controladorJuego.iniciarJuego() })
+  keyboard.r().onPressDo( {controladorJuego.reiniciar() })
   
   keyboard.w().onPressDo({ personaje.mover(personaje.position().up(1)) })
   keyboard.s().onPressDo({ personaje.mover(personaje.position().down(1)) })
   keyboard.a().onPressDo({ personaje.mover(personaje.position().left(1)) })
   keyboard.d().onPressDo({ personaje.mover(personaje.position().right(1)) })
-  
-  
   
   game.start()
 }

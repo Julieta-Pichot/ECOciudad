@@ -4,10 +4,8 @@ import basura.*
 import atmosfera.*
 import arbol.*
 
-// Pantalla de inicio
 object pantallaInicio {
   var property position = game.at(0, 0)
-  
   method image() = "inicio.png"
   
   method mostrar() {
@@ -21,7 +19,6 @@ object pantallaInicio {
   }
 }
 
-// Pantalla final (victoria o derrota)
 object pantallaFinal {
   var property position = game.at(0, 0)
   var esVictoria = false
@@ -31,16 +28,16 @@ object pantallaFinal {
   method mostrarDerrota() {
     esVictoria = false
     controladorJuego.terminarJuego()
-    self.ocultarTodo()  // ← CAMBIO: primero ocultar
-    game.addVisual(self)  // ← después mostrar pantalla
+    self.ocultarTodo() 
+    game.addVisual(self)  
   }
   
   method mostrarVictoria() {
     esVictoria = true
     atmosfera.detenerContador()
     controladorJuego.terminarJuego()
-    self.ocultarTodo()  // ← CAMBIO: primero ocultar
-    game.addVisual(self)  // ← después mostrar pantalla
+    self.ocultarTodo()  
+    game.addVisual(self) 
   }
   
   method ocultarTodo() {
@@ -53,17 +50,18 @@ object pantallaFinal {
     gestorArboles.limpiar()
   }
   
-  method ocultar() {  // ← AGREGAR para cuando se reinicia
+  method ocultar() { 
     if (game.hasVisual(self)) {
       game.removeVisual(self)
     }
   }
 }
 
-// Controlador del flujo del juego
+
 object controladorJuego {
   var property juegoActivo = false
   var property juegoIniciado = false
+  var property inicio = true 
   
   method activarJuego() {
     juegoActivo = true
@@ -73,49 +71,46 @@ object controladorJuego {
     juegoActivo = false
   }
   
-  method iniciarJuego() {  // ← AGREGAR método para iniciar por primera vez
+  method iniciarJuego() {  
     if (!juegoIniciado) {
       juegoIniciado = true
+      inicio = false
       pantallaInicio.ocultar()
       
-      // Mostrar elementos del juego
       game.addVisual(fondoBarraHUD)
       game.addVisual(barraAtmosfera)
       game.addVisual(infoSemillas)
       game.addVisual(infoArboles)
       game.addVisual(personaje)
       
-      // Iniciar el juego
       generador.basuraInicial()
       generador.iniciarRegeneracion()
       atmosfera.iniciarContador()
       
-      juegoActivo = true
     }
   }
   
   method reiniciar() {
-    // Ocultar pantalla final
-    pantallaFinal.ocultar()  // ← CAMBIO: usar método
+    if (!self.inicio() and !self.juegoActivo()){
+      pantallaFinal.ocultar()
     
-    // Verificar y mostrar elementos del HUD
+ 
     if (!game.hasVisual(fondoBarraHUD)) game.addVisual(fondoBarraHUD)
     if (!game.hasVisual(barraAtmosfera)) game.addVisual(barraAtmosfera)
     if (!game.hasVisual(infoSemillas)) game.addVisual(infoSemillas)
     if (!game.hasVisual(infoArboles)) game.addVisual(infoArboles)
     if (!game.hasVisual(personaje)) game.addVisual(personaje)
     
-    // Reiniciar valores
     personaje.reiniciar()
     atmosfera.reiniciar()
     gestorArboles.limpiar()
     generador.limpiar()
     
-    juegoActivo = true  // ← ACTIVAR ANTES de iniciar contadores
+    juegoActivo = true 
     
-    // Empezar de nuevo
     generador.basuraInicial()
     generador.iniciarRegeneracion()
     atmosfera.iniciarContador()
   }
+    }
 }

@@ -16,16 +16,12 @@ object gestorArboles {
     game.addVisual(nuevoArbol)
     return nuevoArbol
   }
-  
   method posicionOcupada(pos) {
     return game.getObjectsIn(pos).size() > 1
     // > 1 porque el personaje ya está en esa posición
   }
-  
   method cantidadArboles() = arboles.size()
   
-  // method arboles() = arboles
-
   method limpiar() {  
     arboles.forEach({ arbol => game.removeVisual(arbol) })
     arboles.clear()

@@ -1,6 +1,6 @@
 import wollok.game.*
 import personaje.*
-import final.*
+import pantallas.*
 import basura.*
 
 object atmosfera {
@@ -25,10 +25,6 @@ object atmosfera {
   
   method aumentar(cantidad) {
     vidaAtmosfera = (vidaAtmosfera + cantidad).min(vidaMaxima)
-    game.say(
-      personaje,
-      (("Atmosfera restaurada: " + vidaAtmosfera) + "/") + vidaMaxima
-    )
   }
   
   method iniciarContador() {

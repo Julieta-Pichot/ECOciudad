@@ -5,9 +5,6 @@ class Arbol {
   const property position
   const property image = "arbolon.png"
   const aumentoAtmosfera = 1
-  
-//   method teAgarroPersonaje() {
-//   }
 }
 
 object gestorArboles {
@@ -27,7 +24,7 @@ object gestorArboles {
   
   method cantidadArboles() = arboles.size()
   
-  method arboles() = arboles
+  // method arboles() = arboles
 
   method limpiar() {  
     arboles.forEach({ arbol => game.removeVisual(arbol) })

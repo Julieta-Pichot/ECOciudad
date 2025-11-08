@@ -3,7 +3,7 @@ import personaje.*
 import basura.*
 import arbol.*
 import atmosfera.*
-import final.* 
+import pantallas.*
 
 program Juego {
   game.width(26)
@@ -11,23 +11,23 @@ program Juego {
   game.cellSize(38)
   game.title("Juego ECOCiudad")
   game.boardGround("fondoJuego.png")
-  game.addVisual(fondoBarraHUD)  
-  game.addVisual(barraAtmosfera)
-  game.addVisual(infoSemillas)
-  game.addVisual(infoArboles) 
-  game.addVisual(personaje)
 
-  generador.basuraInicial()
-  generador.iniciarRegeneracion()
-  atmosfera.iniciarContador()
-
-  game.onCollideDo(personaje, {basura => basura.serRecolectada()})
-
+  pantallaInicio.mostrar()
+  
+  keyboard.e().onPressDo({ controladorJuego.iniciarJuego() })
+  
+  keyboard.r().onPressDo(
+    { if (!controladorJuego.juegoActivo()) // Solo cuando terminó
+        controladorJuego.reiniciar() }
+  )
+  
+  game.onCollideDo(personaje, { basura => basura.serRecolectada() })
+  
   keyboard.up().onPressDo({ personaje.mover(personaje.position().up(1)) })
   keyboard.down().onPressDo({ personaje.mover(personaje.position().down(1)) })
   keyboard.left().onPressDo({ personaje.mover(personaje.position().left(1)) })
   keyboard.right().onPressDo({ personaje.mover(personaje.position().right(1)) })
-
+  
   keyboard.p().onPressDo({ personaje.plantar() })
   keyboard.r().onPressDo({ controladorJuego.reiniciar() })
   
@@ -36,7 +36,7 @@ program Juego {
   keyboard.a().onPressDo({ personaje.mover(personaje.position().left(1)) })
   keyboard.d().onPressDo({ personaje.mover(personaje.position().right(1)) })
   
-
-
+  
+  
   game.start()
 }

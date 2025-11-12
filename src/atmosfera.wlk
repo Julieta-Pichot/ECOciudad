@@ -15,10 +15,8 @@ object atmosfera {
       
       if (vidaAtmosfera == 3) game.say(
           personaje,
-          "⚠️ La atmósfera está crítica"
+          "⚠️ La atmósfera esta citica"
         )
-      
-      // Verificar si llegó a 0
       if (vidaAtmosfera <= 0) self.gameOver()
     }
   }
@@ -55,7 +53,7 @@ object barraAtmosfera {
   method image() = ("vida" + atmosfera.vidaAtmosfera()) + ".png"
 }
 
-object fondoBarraHUD {
+object superiorBarraHUD {
   var property position = game.at(0, 14)
   
   method image() = "barra.png"

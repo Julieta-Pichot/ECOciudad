@@ -1,0 +1,17 @@
+import wollok.game.*
+import personaje.*
+import basura.*
+import arbol.*
+import atmosfera.*
+import pantallas.*
+
+describe "Pruebas para ECOCiudad" {
+    test "No se generan basuras en el mismo lugar" {
+    generador.basuraInicial()
+    
+    const posiciones = generador.basuras().map({ b => b.position() })
+    const posicionesUnicas = posiciones.asSet()
+    
+    assert.equals(posiciones.size(), posicionesUnicas.size())
+    }
+}

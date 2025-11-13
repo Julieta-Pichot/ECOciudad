@@ -6,7 +6,7 @@ import arbol.*
 
 object pantallaInicio {
   var property position = game.at(0, 0)
-  method image() = "inicio.png"
+  method image() = "comienzo.png"
  
 
   method mostrar() {

@@ -31,7 +31,7 @@ class Lata inherits Basura {
 }
 
 object generador {
-  const basurasActivas = []
+  var property basurasActivas = []
   
   method posicionLibre() {
     const posicion = self.posicionAleatoria()

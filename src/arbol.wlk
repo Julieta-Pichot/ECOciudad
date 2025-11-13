@@ -7,7 +7,7 @@ class Arbol {
 }
 
 object gestorArboles {
-  const arboles = []
+  var property arboles = []
   
   method plantarArbol(posicion) {
     const nuevoArbol = new Arbol(position = posicion)

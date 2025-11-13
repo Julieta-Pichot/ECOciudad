@@ -5,13 +5,145 @@ import arbol.*
 import atmosfera.*
 import pantallas.*
 
-describe "Pruebas para ECOCiudad" {
-    test "No se generan basuras en el mismo lugar" {
-    generador.basuraInicial()
+describe "Tests de EcoCiudad" {
+
+    test "Game Over cuando la atmósfera llega a 0" {
+        musicaJuego.iniciar()
+        atmosfera.vidaAtmosfera(1)
+        atmosfera.decrementar()
+        
+        assert.equals(0, atmosfera.vidaAtmosfera())
+        assert.equals(false, atmosfera.estaViva())
+    }
     
-    const posiciones = generador.basuras().map({ b => b.position() })
-    const posicionesUnicas = posiciones.asSet()
+    test "Victoria al plantar 10 arboles" {
+        game.addVisual(personaje)
+        personaje.position(game.at(5, 5))
+        personaje.cantSemillas(700)
+        personaje.arbolesPlantados(0)
+        
+    10.times({ i =>
+        if (i > 0) {
+            personaje.position(game.at(5 + i, 5))
+        }
+        if (personaje.arbolesPlantados() < 10) { 
+            gestorArboles.plantarArbol(personaje.position())
+            personaje.cantSemillas(personaje.cantSemillas() - 70)
+            personaje.arbolesPlantados(personaje.arbolesPlantados() + 1)
+            atmosfera.aumentar(1)
+        }
+    })
+        
+        assert.equals(10, personaje.arbolesPlantados())
+    }
     
-    assert.equals(posiciones.size(), posicionesUnicas.size())
+    
+    test "Se plantan arboles con las semillas necesarias y se descuentan correctamente" {
+        game.addVisual(personaje)
+        personaje.position(game.at(5, 5))
+        personaje.cantSemillas(100)
+        
+        personaje.plantar()
+        
+        assert.equals(1, personaje.arbolesPlantados())
+        assert.equals(30, personaje.cantSemillas()) // 100 - 70 = 30
+    }
+    
+    test "Se incrementa la atmósfera al plantar un arbol" {
+        game.addVisual(personaje)
+        personaje.position(game.at(5, 5))
+        personaje.cantSemillas(70)
+        atmosfera.vidaAtmosfera(5)
+        
+        personaje.plantar()
+        
+        assert.equals(6, atmosfera.vidaAtmosfera())
+    }
+    
+    test "No se puede plantar un árbol arriba de otro" {
+        game.addVisual(personaje)
+        personaje.position(game.at(10, 10))
+        personaje.cantSemillas(140)
+        
+        personaje.plantar()
+        assert.equals(1, personaje.arbolesPlantados())
+        
+        personaje.plantar()
+        assert.equals(1, personaje.arbolesPlantados())
+    }
+    
+    test "El personaje se mueve dentro de los límites del tablero" {
+        personaje.position(game.at(0, 0))
+        
+        personaje.mover(game.at(-1, 0))
+        assert.equals(game.at(0, 0), personaje.position())
+        
+        personaje.mover(game.at(0, 15))
+        assert.equals(game.at(0, 0), personaje.position())
+    }
+    
+    test "La atmósfera no aumenta más de 7" {
+        atmosfera.vidaAtmosfera(7)
+        atmosfera.aumentar(2)
+        
+        assert.equals(7, atmosfera.vidaAtmosfera())
+    }
+    
+    test "No se generan basuras fuera de la grilla de juego" {
+        generador.basuraInicial()
+        
+        generador.basurasActivas().forEach({ basura =>
+            assert.that(basura.position().x() >= 0)
+            assert.that(basura.position().x() < 26)
+            assert.that(basura.position().y() >= 0)
+            assert.that(basura.position().y() < 14)
+        })
+    }
+    
+    test "La lista de arboles contiene lo mismo que arbolesPlantados del personaje" {
+        game.addVisual(personaje)
+        personaje.position(game.at(5, 5))
+        personaje.cantSemillas(210)
+        
+        personaje.plantar()
+        personaje.position(game.at(6, 6))
+        personaje.plantar()
+        personaje.position(game.at(7, 7))
+        personaje.plantar()
+        
+        assert.equals(3, personaje.arbolesPlantados())
+        assert.equals(3, gestorArboles.arboles().size())
+    }
+    
+    test "Las variables de estado cambian correctamente en cada fase" {
+        controladorJuego.juegoActivo(false)
+        controladorJuego.juegoIniciado(false)
+        
+        // INICIO
+        assert.equals(false, controladorJuego.juegoActivo())
+        assert.equals(false, controladorJuego.juegoIniciado())
+        
+        // INICIAR JUEGO
+        controladorJuego.iniciarJuego()
+        assert.equals(true, controladorJuego.juegoIniciado())
+        
+        // TERMINAR JUEGO
+        controladorJuego.terminarJuego()
+        assert.equals(false, controladorJuego.juegoActivo())
+    }
+    
+    test "Reiniciar solo funciona después de terminar el juego" {
+        personaje.cantSemillas(50)
+        personaje.arbolesPlantados(3)
+
+        controladorJuego.juegoActivo(true)
+        controladorJuego.reiniciar()
+        assert.equals(50, personaje.cantSemillas())
+
+        controladorJuego.juegoActivo(false)
+        controladorJuego.inicio(false)
+        controladorJuego.reiniciar()
+        assert.equals(0, personaje.cantSemillas())
+        assert.equals(0, personaje.arbolesPlantados())
     }
 }

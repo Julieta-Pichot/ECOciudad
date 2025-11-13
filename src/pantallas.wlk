@@ -22,7 +22,7 @@ object pantallaInicio {
 
 object pantallaFinal {
   var property position = game.at(0, 0)
-  var esVictoria = false 
+  var property esVictoria = false 
   
   method image() = if (esVictoria) "victory.png" else "perdiste.png"
   

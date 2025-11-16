@@ -30,6 +30,7 @@ object pantallaFinal {
     esVictoria = false
     controladorJuego.terminarJuego()
     musicaJuego.detener()
+    musicaDerrota.iniciar()
     self.ocultarTodo() 
     game.addVisual(self) 
   }
@@ -39,6 +40,7 @@ object pantallaFinal {
     atmosfera.detenerContador()
     controladorJuego.terminarJuego()
     musicaJuego.detener()
+    musicaVictoria.iniciar()
     self.ocultarTodo()  
     game.addVisual(self)
   }
@@ -65,6 +67,33 @@ object musicaJuego {
   method iniciar() {
     musica.shouldLoop(true)
     musica.volume(0.7)
+    musica.play()
+  }
+  
+  method detener() {
+    musica.stop()
+  }
+}
+object musicaVictoria {
+  const musica = game.sound("musicaVicto.mp3")  
+  
+  method iniciar() {
+    musica.shouldLoop(false) 
+    musica.volume(0.8)
+    musica.play()
+  }
+  
+  method detener() {
+    musica.stop()
+  }
+}
+
+object musicaDerrota {
+  const musica = game.sound("musica.perdiste.mp3") 
+  
+  method iniciar() {
+    musica.shouldLoop(false)  
+    musica.volume(0.8)
     musica.play()
   }
   
@@ -103,7 +132,6 @@ object controladorJuego {
       generador.basuraInicial()
       generador.iniciarRegeneracion()
       atmosfera.iniciarContador()
-      
       musicaJuego.iniciar()
     }
   }

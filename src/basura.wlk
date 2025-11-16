@@ -121,13 +121,13 @@ object generador {
     
     // Probabilidades según balance
     if (prob <= 35) {
-      self.crearBananas(1) // 35% Banana
+      self.crearBananas(1) // 1-35 || 35% Banana
     } else {
       if (prob <= 70) {
-        self.crearManzanas(1) // 35% Manzana
+        self.crearManzanas(1) // 36-70 || 35% Manzana
       } else {
-        if (prob <= 90) self.crearPapeles(1) // 20% Papel
-        else self.crearLatas(1) // 10% Lata
+        if (prob <= 90) self.crearPapeles(1) // 71-90 || 20% Papel
+        else self.crearLatas(1) // 91-100 || 10% Lata
       }
     }
   }

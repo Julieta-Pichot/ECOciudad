@@ -30,7 +30,7 @@ describe "Tests de EcoCiudad" {
             gestorArboles.plantarArbol(personaje.position())
             personaje.cantSemillas(personaje.cantSemillas() - 70)
             personaje.arbolesPlantados(personaje.arbolesPlantados() + 1)
-            atmosfera.aumentar(1)
+            atmosfera.aumentar()
         }
     })
         
@@ -84,7 +84,8 @@ describe "Tests de EcoCiudad" {
     
     test "La atmósfera no aumenta más de 7" {
         atmosfera.vidaAtmosfera(7)
-        atmosfera.aumentar(2)
+        atmosfera.aumentar()
+        atmosfera.aumentar()
         
         assert.equals(7, atmosfera.vidaAtmosfera())
     }

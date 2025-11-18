@@ -6,11 +6,9 @@ import basura.*
 object atmosfera {
   var property vidaAtmosfera = 7
   var property estaViva = true
-  const vidaMaxima = 7
-  const vidaMinima = 0
   
   method decrementar() {
-    if (vidaAtmosfera > vidaMinima) {
+    if (vidaAtmosfera > 0) {
       vidaAtmosfera -= 1
       
       if (vidaAtmosfera == 3) game.say(
@@ -21,8 +19,8 @@ object atmosfera {
     }
   }
   
-  method aumentar(cantidad) {
-    vidaAtmosfera = (vidaAtmosfera + cantidad).min(vidaMaxima)
+  method aumentar() {
+    vidaAtmosfera = (vidaAtmosfera + 1).min(7)
   }
   
   method iniciarContador() {
@@ -41,7 +39,6 @@ object atmosfera {
   }
   
   method reiniciar() {
-    self.detenerContador()
     vidaAtmosfera = 7
     estaViva = true
   }
@@ -64,7 +61,12 @@ object infoSemillas {
   
   method text() = "Semillas: " + personaje.cantSemillas()
   
-  method textColor() = "FFFFFF"
+  method textColor() {
+    if (personaje.podesPlantar())
+      return "00ff00ff"
+    else
+      return "FFFFFF"
+  }
 }
 
 object infoArboles {

@@ -44,7 +44,7 @@ method plantar() {
         gestorArboles.plantarArbol(self.position())
         cantSemillas -= semillasNecesarias
         arbolesPlantados += 1
-        atmosfera.aumentar(1)
+        atmosfera.aumentar()
       }
     }
     if (arbolesPlantados >= objetivoPlantaciones)

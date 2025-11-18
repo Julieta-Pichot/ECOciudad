@@ -9,25 +9,42 @@ class Basura {
   
   method serRecolectada() {
     game.removeVisual(self)
-    personaje.recolectarBasura(self)
+    self.efectoAlRecolectar()
     generador.eliminarBasura(self)
   }
+  method efectoAlRecolectar()
 }
 
 class Banana inherits Basura {
   override method valorSemillas() = 20
+
+  override method efectoAlRecolectar() {
+      personaje.recolectarBasura(self)  
+  }
 }
 
 class Manzana inherits Basura {
   override method valorSemillas() = 10
+
+  override method efectoAlRecolectar() {
+      personaje.recolectarBasura(self)  
+  }
 }
 
 class Papel inherits Basura {
-  override method valorSemillas() = 15
+  override method valorSemillas() = 0
+
+  override method efectoAlRecolectar() {
+        generador.crearBananas(3)
+  }
 }
 
 class Lata inherits Basura {
-  override method valorSemillas() = 30
+  override method valorSemillas() = 0
+
+  override method efectoAlRecolectar() {
+        generador.crearManzanas(5)
+  }
 }
 
 object generador {
@@ -104,8 +121,8 @@ object generador {
   method basuraInicial() {
     self.crearBananas(6)
     self.crearManzanas(8)
-    self.crearPapeles(7)
-    self.crearLatas(5)
+    self.crearPapeles(4)
+    self.crearLatas(3)
   }
   
   method iniciarRegeneracion() {
@@ -120,13 +137,13 @@ object generador {
     const prob = 1.randomUpTo(100)
     
     // Probabilidades según balance
-    if (prob <= 35) {
-      self.crearBananas(1) // 1-35 || 35% Banana
+    if (prob <= 40) {
+      self.crearBananas(1) // 1-40 || 40% Banana
     } else {
-      if (prob <= 70) {
-        self.crearManzanas(1) // 36-70 || 35% Manzana
+      if (prob <= 80) {
+        self.crearManzanas(1) // 41-80 || 40% Manzana
       } else {
-        if (prob <= 90) self.crearPapeles(1) // 71-90 || 20% Papel
+        if (prob <= 90) self.crearPapeles(1) // 81-90 || 20% Papel
         else self.crearLatas(1) // 91-100 || 10% Lata
       }
     }

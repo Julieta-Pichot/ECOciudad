@@ -69,7 +69,7 @@ object infoBanana {
 }
 object infoManzana {
   var property position = game.at(10, 0)
-  method text() = "📄Papeles: 15 semillas "
+  method text() = "📄Papeles: +3 bananas "
   method textColor() = "FFFFFF"
 }
 object infoLata {
@@ -79,6 +79,6 @@ object infoLata {
 }
 object infoPapel {
   var property position = game.at(19.5, 0)
-  method text() = "🥫Latas: 30 semillas "
+  method text() = "🥫Latas: +5 manzanas "
   method textColor() = "FFFFFF"
 }

@@ -93,6 +93,8 @@ describe "Tests de EcoCiudad" {
     test "No se generan basuras fuera de la grilla de juego" {
         generador.basuraInicial()
         
+        assert.that(generador.basurasActivas().size() > 0)
+        
         generador.basurasActivas().forEach({ basura =>
             assert.that(basura.position().x() >= 0)
             assert.that(basura.position().x() < 26)

@@ -10,7 +10,7 @@ object personaje {
   var property arbolesPlantados = 0
   const objetivoPlantaciones = 10
   const semillasNecesarias = 70
-  
+
   method image() = "persona.png"
   
   method mover(nuevaPosicion) {
@@ -27,7 +27,6 @@ object personaje {
     cantSemillas += basura.valorSemillas()
     if (self.podesPlantar()) game.say(self, "Ya podés plantar un arbolito!!")
   }
-
   method podesPlantar() = (cantSemillas >= semillasNecesarias) and atmosfera.estaViva()
 
 method plantar() {
